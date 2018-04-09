@@ -1,18 +1,11 @@
 node {
     stage('Build') {
-	git changelog: false, poll: false, url: 'https://github.com/erasmussen39/tomcat-hello-world.git'
+	git changelog: false, poll: false, url: 'https://github.com/erasmussen39/tomcat-hello-world.git', branch: 'xld'
         sh 'mvn clean package'
     }
     
     stage('Deploy') {
-        sh('''DEPLOY_RESULT=$(curl -o /dev/null --silent --head --write-out \'%{http_code}\\n\' -u ${TOMCAT_USER}:${TOMCAT_PASSWORD} \"http://${TOMCAT_SERVER}:${TOMCAT_PORT}/manager/text/deploy?path=/${TOMCAT_APP_NAME}&war=file:${WORKSPACE}/target/${TOMCAT_APP_NAME}.war\")
-        echo "DEPLOY_RESULT: ${DEPLOY_RESULT}"
-        if [ ${DEPLOY_RESULT} -ne 200 ]
-        then
-            exit 1
-        else
-            exit 0
-        fi''')
+        sh("echo use xld...")
     }
     
     stage('Test') {
@@ -27,12 +20,7 @@ node {
     }
 
     stage('Teardown') {
-        sh('''UNDEPLOY_RESULT=$(curl -o /dev/null --silent --head --write-out \'%{http_code}\\n\' -u ${TOMCAT_USER}:${TOMCAT_PASSWORD} \"http://${TOMCAT_SERVER}:${TOMCAT_PORT}/manager/text/undeploy?path=/${TOMCAT_APP_NAME}\")
-        echo "UNDEPLOY_RESULT: ${UNDEPLOY_RESULT}"
-        if [ ${UNDEPLOY_RESULT} -ne 200 ]
-        then
-            exit 1
-        fi''')
+        sh("echo use xld...")
     	deleteDir()
     }
 }
