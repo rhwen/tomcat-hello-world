@@ -1,13 +1,14 @@
 node {
     stage('Build') {
 	git changelog: false, poll: false, url: 'https://github.com/erasmussen39/tomcat-hello-world.git', branch: 'xld'
-        sh 'mvn clean package'
+        sh('mvn clean package')
+        sh('sed -i -e \'s/PACKAGE_VERSION/1.0.${BUILD_NUMBER}/g\' deployit-manifest.xml')
     }
     
     stage('Deploy') {
         xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
         xldPublishPackage serverCredentials: 'admin', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
-        xldDeploy serverCredentials: 'admin', environmentId: 'Environments/Tomcat', packageId: 'Applications/Tomcat Hello World/$BUILD_NUMBER.0'
+        xldDeploy serverCredentials: 'admin', environmentId: 'Environments/Tomcat', packageId: 'Applications/Tomcat Hello World/1.0.$BUILD_NUMBER'
     }
     
     stage('Test') {
