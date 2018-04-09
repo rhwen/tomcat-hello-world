@@ -20,7 +20,10 @@ node {
     }
 
     stage('Teardown') {
-	deleteDir()
+        script {
+            curl -u ${TOMCAT_USER}:${TOMCAT_PASSWORD} 'http://${TOMCAT_SERVER}:${TOMCAT_PORT}/manager/text/undeploy?path=/${TOMCAT_APP_NAME}'
+        }
+    	deleteDir()
     }
 }
 
