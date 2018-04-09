@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <udm.DeploymentPackage version="1.0.0" application="Tomcat Hello World">
   <deployables>
-    <tomcat.War name="tomcat-hello-world" file="target/tomcat-hello-world.war">
+    <tomcat.War name="tomcat-hello-world" file="tomcat-hello-world.war">
       <scanPlaceholders>false</scanPlaceholders>
       <preScannedPlaceholders>true</preScannedPlaceholders>
     </tomcat.War>
