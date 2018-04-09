@@ -1,6 +1,6 @@
 node {
     stage('Build') {
-	git changelog: false, poll: false, url: 'https://github.com/erasmussen39/tomcat-hello-world.git'
+	git changelog: false, poll: false, url: 'https://github.com/erasmussen39/tomcat-hello-world.git', branch: scripted
         sh 'mvn clean package'
     }
     
