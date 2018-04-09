@@ -1,6 +1,6 @@
 node {
     stage('Build') {
-	git changelog: false, poll: false, url: 'https://github.com/erasmussen39/tomcat-hello-world.git', branch: refs/heads/scripted
+        git changelog: false, poll: false, url: 'https://github.com/erasmussen39/tomcat-hello-world.git', branch: 'scripted'
         sh 'mvn clean package'
     }
     
@@ -33,7 +33,6 @@ node {
         then
             exit 1
         fi''')
-    	deleteDir()
+        deleteDir()
     }
 }
-
