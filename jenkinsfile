@@ -5,7 +5,7 @@ node {
     }
     
     stage('Deploy') {
-        sh('''DEPLOY_RESULT=$(curl -o /dev/null --silent --head --write-out \'%{http_code}\\n\' -u ${TOMCAT_USER}:${TOMCAT_PASSWORD} \"http://${TOMCAT_SERVER}:${TOMCAT_PORT}/manager/text/deploy?path=/${TOMCAT_APP_NAME}&war=file:${WORKSPACE}/target/${TOMCAT_APP_NAME}.war\"')
+        sh('''DEPLOY_RESULT=$(curl -o /dev/null --silent --head --write-out \'%{http_code}\\n\' -u ${TOMCAT_USER}:${TOMCAT_PASSWORD} \"http://${TOMCAT_SERVER}:${TOMCAT_PORT}/manager/text/deploy?path=/${TOMCAT_APP_NAME}&war=file:${WORKSPACE}/target/${TOMCAT_APP_NAME}.war\")
         echo ${DEPLOY_RESULT}
         if [ ${DEPLOY_RESULT} -ne 200 ]
         then
