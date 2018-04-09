@@ -5,7 +5,9 @@ node {
     }
     
     stage('Deploy') {
-        sh("echo use xld...")
+        xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
+        xldPublishPackage serverCredentials: 'admin', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
+        xldDeploy serverCredentials: 'admin', environmentId: 'Environments/Tomcat', packageId: 'Applications/Tomcat\ Hello\ World/$BUILD_NUMBER.0'
     }
     
     stage('Test') {
