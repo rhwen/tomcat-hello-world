@@ -1,6 +1,5 @@
 node {
     stage('Build') {
-        git changelog: false, poll: false, url: 'https://github.com/erasmussen39/tomcat-hello-world.git'
         sh 'mvn clean package'
     }
     
@@ -18,7 +17,9 @@ node {
             exit 0
         fi'''
     }
-    
-    deleteDir()
+
+    stage('Teardown') {
+        deleteDir()
+    }
 }
 
