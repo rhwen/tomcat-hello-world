@@ -1,0 +1,24 @@
+node {
+    stage('Build') {
+        git changelog: false, poll: false, url: 'https://github.com/erasmussen39/tomcat-hello-world.git'
+        sh 'mvn clean package'
+    }
+    
+    stage('Deploy') {
+        sh 'curl -o /dev/null --silent --head --write-out \'%{http_code}\\n\' -u ${TOMCAT_USER}:${TOMCAT_PASSWORD} \"http://${TOMCAT_SERVER}:${TOMCAT_PORT}/manager/text/deploy?path=/${TOMCAT_APP_NAME}&war=file:${WORKSPACE}/target/${TOMCAT_APP_NAME}.war\"'
+    }
+    
+    stage('Test') {
+        sh '''RESULT=$(wget --server-response http://localhost:8888/tomcat-hello-world/ 2>&1 | awk \'/^  HTTP/{print $2}\')
+        echo ${RESULT}
+        if [ ${RESULT} -ne 200 ]
+        then
+            exit 1
+        else
+            exit 0
+        fi'''
+    }
+    
+    deleteDir()
+}
+
