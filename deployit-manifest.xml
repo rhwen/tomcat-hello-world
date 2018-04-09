@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<udm.DeploymentPackage version="1.0.0" application="Tomcat Hello World">
+<udm.DeploymentPackage version="PACKAGE_VERSION" application="Tomcat Hello World">
   <deployables>
     <tomcat.War name="tomcat-hello-world" file="tomcat-hello-world.war">
       <scanPlaceholders>false</scanPlaceholders>
