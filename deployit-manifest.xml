@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <udm.DeploymentPackage version="PACKAGE_VERSION" application="Tomcat Hello World">
-  <deployables>
+    <orchestrator>
+        <value>parallel-by-container</value>
+    </orchestrator>
+    <deployables>
     <tomcat.War name="tomcat-hello-world" file="tomcat-hello-world.war">
       <scanPlaceholders>false</scanPlaceholders>
       <preScannedPlaceholders>true</preScannedPlaceholders>
