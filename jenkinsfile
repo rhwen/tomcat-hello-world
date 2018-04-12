@@ -8,7 +8,7 @@ node {
     stage('Deploy') {
         xldCreatePackage artifactsPath: 'target', manifestPath: 'deployit-manifest.xml', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
         xldPublishPackage serverCredentials: 'admin', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
-        xldDeploy serverCredentials: 'admin', environmentId: 'Environments/TOMCAT_STANDALONE', packageId: 'Applications/Tomcat Hello World/1.0.$BUILD_NUMBER'
+        xldDeploy serverCredentials: 'admin', environmentId: 'Environments/$XLD_ENV', packageId: 'Applications/Tomcat Hello World/1.0.$BUILD_NUMBER'
     }
     
     stage('Test') {
