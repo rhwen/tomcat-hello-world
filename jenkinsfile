@@ -10,17 +10,6 @@ node {
         xldPublishPackage serverCredentials: 'admin', darPath: '$JOB_NAME-$BUILD_NUMBER.0.dar'
         xldDeploy serverCredentials: 'admin', environmentId: 'Environments/$XLD_ENV', packageId: 'Applications/Tomcat Hello World/1.0.$BUILD_NUMBER'
     }
-    
-    stage('Test') {
-        sh('''RESULT=$(wget --server-response http://localhost:8888/tomcat-hello-world/ 2>&1 | awk \'/^  HTTP/{print $2}\')
-        echo ${RESULT}
-        if [ ${RESULT} -ne 200 ]
-        then
-            exit 1
-        else
-            exit 0
-        fi''')
-    }
 
     stage('Teardown') {
         sh("echo use xld...")
