@@ -4,8 +4,8 @@ node {
         sh 'mvn clean package'
     }
     
-    stage('Deploy') {
-        sh('''DEPLOY_RESULT=$(curl -o /dev/null --silent --head --write-out \'%{http_code}\\n\' -u ${TOMCAT_USER}:${TOMCAT_PASSWORD} \"http://${TOMCAT_SERVER}:${TOMCAT_PORT}/manager/text/deploy?path=/${TOMCAT_APP_NAME}&war=file:${WORKSPACE}/target/${TOMCAT_APP_NAME}.war\")
+    stage('Deploy Server 1') {
+        sh('''DEPLOY_RESULT=$(curl -o /dev/null --silent --head --write-out \'%{http_code}\\n\' -u ${TOMCAT_SERVER_1_USER}:${TOMCAT_SERVER_1_PASS} \"http://${TOMCAT_SERVER_1}:${TOMCAT_SERVER_1_PORT}/manager/text/deploy?path=/${TOMCAT_APP_NAME}&war=file:${WORKSPACE}/target/${TOMCAT_APP_NAME}.war\")
         echo "DEPLOY_RESULT: ${DEPLOY_RESULT}"
         if [ ${DEPLOY_RESULT} -ne 200 ]
         then
@@ -14,20 +14,9 @@ node {
             exit 0
         fi''')
     }
-    
-    stage('Test') {
-        sh('''RESULT=$(wget --server-response http://localhost:8888/tomcat-hello-world/ 2>&1 | awk \'/^  HTTP/{print $2}\')
-        echo ${RESULT}
-        if [ ${RESULT} -ne 200 ]
-        then
-            exit 1
-        else
-            exit 0
-        fi''')
-    }
 
-    stage('Teardown') {
-        sh('''UNDEPLOY_RESULT=$(curl -o /dev/null --silent --head --write-out \'%{http_code}\\n\' -u ${TOMCAT_USER}:${TOMCAT_PASSWORD} \"http://${TOMCAT_SERVER}:${TOMCAT_PORT}/manager/text/undeploy?path=/${TOMCAT_APP_NAME}\")
+    stage('Teardown Server 1') {
+        sh('''UNDEPLOY_RESULT=$(curl -o /dev/null --silent --head --write-out \'%{http_code}\\n\' -u ${TOMCAT_SERVER_1_USER}:${TOMCAT_SERVER_1_PASS} \"http://${TOMCAT_SERVER_1}:${TOMCAT_SERVER_1_PORT}/manager/text/undeploy?path=/${TOMCAT_APP_NAME}\")
         echo "UNDEPLOY_RESULT: ${UNDEPLOY_RESULT}"
         if [ ${UNDEPLOY_RESULT} -ne 200 ]
         then
