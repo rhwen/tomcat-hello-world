@@ -8,7 +8,7 @@
   <name>tomcat-hello-world Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
-   <maven.tomcat.url>http://localhost:8080/manager/text</maven.tomcat.url>
+   <maven.tomcat.url>http://192.168.31.167:8080/manager/text</maven.tomcat.url>
 </properties>
   <dependencies>
     <dependency>
