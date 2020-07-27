@@ -6,6 +6,6 @@
     <title>Tomcat Hello World!!</title>
   </head>
   <body>
-    <div class="message"><%=com.acme.HelloWorld.getMessage()%></div>
+    <div class="message">Hello World</div>
   </body>
 </html>
