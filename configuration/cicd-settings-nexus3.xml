@@ -5,6 +5,13 @@
             <username>deployment</username>
             <password>deployment123</password>
         </server>
+        <server>
+            <id>mytomcat</id>
+            <!-- server login name -->
+            <username>yourname</username>
+            <!-- server login password -->
+            <password>yourpassword</password>
+        </server>
     </servers>
     <mirrors>
         <mirror>
