@@ -26,6 +26,19 @@
           <target>10</target>
         </configuration>
       </plugin>
+      <!-- 配置Tomcat8插件 -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat8-maven-plugin</artifactId>
+        <version>3.0-r1756463</version>
+        <configuration>
+          <!-- 将IP改为服务器IP，其他不变 -->
+          <url>http://192.168.31.167:8080/manager/text</url>
+          <path>/tomcat-hello-world</path>
+          <username>yourname</username>
+          <password>yourpassword</password>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
