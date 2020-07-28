@@ -1,0 +1,2 @@
+[tomcat]
+30.0.2.48 ansible_ssh_user=root ansible_ssh_pass=redhat
