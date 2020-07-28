@@ -37,7 +37,7 @@
         <configuration>
           <!-- 将IP改为服务器IP，其他不变 -->
           <url>http://192.168.31.167:8080/manager/text</url>
-          <path>/tomcat-hello-world</path>
+          <path>/</path>
           <username>yourname</username>
           <password>yourpassword</password>
           <server>mytomcat</server>
