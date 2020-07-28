@@ -8,7 +8,7 @@
   <name>tomcat-hello-world Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
-   <maven.tomcat.url>http://192.168.31.167:8080/manager/text</maven.tomcat.url>
+   <maven.tomcat.url>http://30.0.2.48:8080/manager/text</maven.tomcat.url>
 </properties>
   <dependencies>
     <dependency>
@@ -36,7 +36,7 @@
         <version>3.0-r1756463</version>
         <configuration>
           <!-- 将IP改为服务器IP，其他不变 -->
-          <url>http://192.168.31.167:8080/manager/text</url>
+          <url>http://30.0.2.48:8080/manager/text</url>
           <path>/</path>
           <username>yourname</username>
           <password>yourpassword</password>
